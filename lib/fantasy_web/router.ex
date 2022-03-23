@@ -16,17 +16,23 @@ defmodule FantasyWeb.Router do
     post "/login", UsersController, :login
   end
 
+  scope "/docs/swagger" do
+    forward "/", PhoenixSwagger.Plug.SwaggerUI,
+      otp_app: :fantasy,
+      swagger_file: "swagger.json"
+  end
+
   scope "/api", FantasyWeb do
     pipe_through [:api, :guardian]
 
-    get "/list-team-players", TeamsController, :list_team_players
+    get "/list", TeamsController, :list
     put "/teams/:team_id", TeamsController, :update
 
     put "/players/:player_id", PlayersController, :update
     post "/players/:player_id/buy", PlayersController, :buy
 
-    get "/transfer-list", TransferListController, :list
-    post "/transfers/auction", TransferListController, :auction
+    get "/auctions/list", TransferListController, :list
+    post "/auctions", TransferListController, :auction
   end
 
   # Enables LiveDashboard only for development

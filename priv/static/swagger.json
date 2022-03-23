@@ -1,0 +1,433 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "Player": {
+      "description": "A player",
+      "example": {
+        "age": 18,
+        "country": "Iran",
+        "first_name": "updated-1",
+        "id": "f5eb298e-e301-4c49-8d01-c466af8b6bf9",
+        "inserted_at": "2022-03-20T07:23:17.702257Z",
+        "last_name": "Lowe",
+        "market_value": 1000000,
+        "role": "goalkeeper",
+        "team": "128a51b9-fac6-4c96-990d-6010c602fa13",
+        "updated_at": "2022-03-20T09:15:25.499225Z"
+      },
+      "title": "Player",
+      "type": "object"
+    },
+    "Team": {
+      "description": "A team information",
+      "example": {
+        "budget": 5000000,
+        "country": "Montserrat",
+        "id": "128a51b9-fac6-4c96-990d-6010c602fa13",
+        "inserted_at": "2022-03-20T07:23:17.697798Z",
+        "name": "updated-1",
+        "owner": "48b4a9eb-4f4d-4d80-a137-b793bc8f237c",
+        "updated_at": "2022-03-20T09:06:11.398164Z"
+      },
+      "title": "Team",
+      "type": "object"
+    },
+    "TeamPlayers": {
+      "description": "Team with players",
+      "example": {
+        "budget": 5000000,
+        "country": "Montserrat",
+        "id": "128a51b9-fac6-4c96-990d-6010c602fa13",
+        "inserted_at": "2022-03-20T07:23:17.697798Z",
+        "name": "updated-1",
+        "owner": "48b4a9eb-4f4d-4d80-a137-b793bc8f237c",
+        "players": [
+          {
+            "age": 35,
+            "country": "Virgin Islands, British",
+            "first_name": "Lilliana",
+            "id": "b985e503-fce5-4bd7-8813-41ba7e5e45db",
+            "inserted_at": "2022-03-20T07:23:17.704672Z",
+            "last_name": "Hickle",
+            "market_value": 1000000,
+            "role": "goalkeeper",
+            "team": "128a51b9-fac6-4c96-990d-6010c602fa13",
+            "updated_at": "2022-03-20T07:23:17.704672Z"
+          },
+          {
+            "age": 37,
+            "country": "Wallis and Futuna",
+            "first_name": "Carolanne",
+            "id": "eb62904d-edbe-4ed4-96e4-dd11d5f9a7dd",
+            "inserted_at": "2022-03-20T07:23:17.706171Z",
+            "last_name": "Crist",
+            "market_value": 1000000,
+            "role": "goalkeeper",
+            "team": "128a51b9-fac6-4c96-990d-6010c602fa13",
+            "updated_at": "2022-03-20T07:23:17.706171Z"
+          }
+        ],
+        "updated_at": "2022-03-20T09:06:11.398164Z",
+        "value": 2000000
+      },
+      "title": "Team with Players",
+      "type": "object"
+    },
+    "Transfer": {
+      "description": "Puts the players available on auction",
+      "example": {
+        "ask_price": 1000123,
+        "inserted_at": "2022-03-20T10:00:15.685910Z",
+        "owner": "da000edc-806a-4bf0-8350-cbff7e4c33f1",
+        "player_id": "cd156f2e-d8be-427b-a65d-b263d139c063",
+        "updated_at": "2022-03-20T10:00:15.685918Z"
+      },
+      "title": "Transfer",
+      "type": "object"
+    },
+    "TransferList": {
+      "description": "A list of all the players available on auction",
+      "example": {
+        "entries": [
+          {
+            "ask_price": 1000123,
+            "inserted_at": "2022-03-20T10:00:15.685910Z",
+            "owner": "da000edc-806a-4bf0-8350-cbff7e4c33f1",
+            "player_id": "cd156f2e-d8be-427b-a65d-b263d139c063",
+            "updated_at": "2022-03-20T10:00:15.685918Z"
+          },
+          {
+            "ask_price": 1000123,
+            "inserted_at": "2022-03-20T10:00:13.596021Z",
+            "owner": "da000edc-806a-4bf0-8350-cbff7e4c33f1",
+            "player_id": "d3e41954-fc3c-4a0e-a4a2-7a14f1618a79",
+            "updated_at": "2022-03-20T10:00:13.596029Z"
+          }
+        ],
+        "page_number": 1,
+        "page_size": 10,
+        "total_entries": 2,
+        "total_pages": 1
+      },
+      "title": "TransferList",
+      "type": "object"
+    },
+    "User": {
+      "description": "User Signup information",
+      "example": {
+        "email": "some-name-2x@gmail.com",
+        "id": "8dcc597d-646e-411a-988e-876f0254e3b4",
+        "inserted_at": "2022-03-22T13:29:40.398977Z",
+        "updated_at": "2022-03-22T13:29:40.398977Z"
+      },
+      "title": "User",
+      "type": "object"
+    },
+    "UserToken": {
+      "description": "User Login information",
+      "example": {
+        "email": "some-name-2@gmail.com",
+        "id": "48b4a9eb-4f4d-4d80-a137-b793bc8f237c",
+        "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJmYW50YXN5IiwiZXhwIjoxNjQ4MDM4NDEwLCJpYXQiOjE2NDc5NTIwMTAsImlzcyI6ImZhbnRhc3kiLCJqdGkiOiI1YmMwYWU1NS1iNzVmLTRiMWUtYjdkYi1lNzZmNTFkYmQ3YTgiLCJuYmYiOjE2NDc5NTIwMDksInN1YiI6IjQ4YjRhOWViLTRmNGQtNGQ4MC1hMTM3LWI3OTNiYzhmMjM3YyIsInR5cCI6ImFjY2VzcyJ9.XlareOCUtORMAvicw4OfRdPWN1ng54RDfph6hZ02LVNCoh-usXSlQFPvVg5cHuirFIcGe0CAfNuZQJ20X5dxfQ"
+      },
+      "title": "User Login",
+      "type": "object"
+    }
+  },
+  "host": "localhost:4000",
+  "info": {
+    "description": "API Documentation for Fantasy",
+    "termsOfService": "Open for public",
+    "title": "Fantasy",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/auctions": {
+      "post": {
+        "description": "Sets/Puts the player on auction aka transfer-list",
+        "operationId": "FantasyWeb.TransferListController.auction",
+        "parameters": [
+          {
+            "description": "Player ID to sell",
+            "in": "query",
+            "name": "player_id",
+            "required": false,
+            "type": "uuid"
+          },
+          {
+            "description": "Asking price for player",
+            "in": "query",
+            "name": "ask_price",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Transfer"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "TransferList"
+        ]
+      }
+    },
+    "/api/auctions/list": {
+      "get": {
+        "description": "Paginated List of all the players on auction aka transfer-list",
+        "operationId": "FantasyWeb.TransferListController.list",
+        "parameters": [
+          {
+            "description": "Page number to load",
+            "in": "path",
+            "name": "page",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TransferList"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "TransferList"
+        ]
+      }
+    },
+    "/api/list": {
+      "get": {
+        "description": "Get user's team with list of all the players in team",
+        "operationId": "FantasyWeb.TeamsController.list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TeamPlayers"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Teams"
+        ]
+      }
+    },
+    "/api/players/{player_id}": {
+      "put": {
+        "description": "Updates a player information",
+        "operationId": "FantasyWeb.PlayersController.update",
+        "parameters": [
+          {
+            "description": "Player ID",
+            "in": "path",
+            "name": "player_id",
+            "required": true,
+            "type": "uuid"
+          },
+          {
+            "description": "Player's first-name",
+            "in": "query",
+            "name": "fname",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Player's last-name",
+            "in": "query",
+            "name": "lname",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Player's country",
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Players"
+        ]
+      }
+    },
+    "/api/players/{player_id}/buy": {
+      "post": {
+        "description": "Buy a player on auction",
+        "operationId": "FantasyWeb.PlayersController.buy",
+        "parameters": [
+          {
+            "description": "Player ID",
+            "in": "path",
+            "name": "player_id",
+            "required": true,
+            "type": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Players"
+        ]
+      }
+    },
+    "/api/teams/{team_id}": {
+      "put": {
+        "description": "Updates a team",
+        "operationId": "FantasyWeb.TeamsController.update",
+        "parameters": [
+          {
+            "description": "Team ID",
+            "in": "path",
+            "name": "team_id",
+            "required": true,
+            "type": "uuid"
+          },
+          {
+            "description": "Team's name",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Team's country",
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Teams"
+        ]
+      }
+    },
+    "/login": {
+      "post": {
+        "description": "Create/Signup a User",
+        "operationId": "FantasyWeb.UsersController.login",
+        "parameters": [
+          {
+            "description": "Email to use for signup/login",
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Password to use for signup/login",
+            "in": "query",
+            "name": "password",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserToken"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/signup": {
+      "post": {
+        "description": "Create/Signup a User",
+        "operationId": "FantasyWeb.UsersController.signup",
+        "parameters": [
+          {
+            "description": "Email to use for signup/login",
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Password to use for signup/login",
+            "in": "query",
+            "name": "password",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Users"
+        ]
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "description": "API Token must be provided via `Authorization: Bearer ` header",
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "tags": [
+    {
+      "description": "User resources",
+      "name": "Users"
+    }
+  ]
+}

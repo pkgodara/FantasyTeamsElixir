@@ -60,6 +60,8 @@ defmodule Fantasy.MixProject do
       {:scrivener, "~> 2.0"},
       {:scrivener_ecto, "~> 2.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:phoenix_swagger, "~> 0.8"},
+      {:ex_json_schema, "~> 0.5"},
       {:excoveralls, "~> 0.14.0", only: [:dev, :test]}
     ]
   end

@@ -13,7 +13,7 @@ defmodule Fantasy.PlayersTest do
       {:ok, team: team, player: insert(:player, team_id: team.id)}
     end
 
-    @invalid_attrs %{role: :invalid}
+    @invalid_attrs %{fname: 12}
 
     test "get_player!/1 returns the player with given id", %{player: player} do
       assert Players.get_player!(player.id) == player

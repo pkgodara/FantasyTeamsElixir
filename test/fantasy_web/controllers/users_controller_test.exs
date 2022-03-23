@@ -48,7 +48,7 @@ defmodule FantasyWeb.UsersControllerTest do
       conn3 =
         conn3
         |> put_req_header("authorization", "Bearer " <> token)
-        |> get(Routes.teams_path(conn3, :list_team_players))
+        |> get(Routes.teams_path(conn3, :list))
 
       assert %{"owner" => ^id} = json_response(conn3, 200)
     end

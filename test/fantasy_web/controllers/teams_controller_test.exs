@@ -1,7 +1,7 @@
 defmodule FantasyWeb.TeamsControllerTest do
   use FantasyWeb.ConnCase, async: true
 
-  describe "list_team_players/2" do
+  describe "list/2" do
     setup do
       user = insert(:user)
       team = insert(:team, user_id: user.id)
@@ -18,7 +18,7 @@ defmodule FantasyWeb.TeamsControllerTest do
       conn =
         conn
         |> authorize_conn(user)
-        |> get(Routes.teams_path(conn, :list_team_players))
+        |> get(Routes.teams_path(conn, :list))
 
       %{id: user_id} = user
       %{id: team_id} = team
@@ -31,7 +31,7 @@ defmodule FantasyWeb.TeamsControllerTest do
     end
 
     test "error without login", %{conn: conn} do
-      conn = get(conn, Routes.teams_path(conn, :list_team_players))
+      conn = get(conn, Routes.teams_path(conn, :list))
       assert %{"error" => "Authentication error."} = json_response(conn, 401)
     end
   end

@@ -7,7 +7,6 @@ defmodule FantasyWeb.TransferListController do
   alias Fantasy.TransferList
   alias Fantasy.Users.User
   alias Fantasy.Teams
-
   alias FantasyWeb.Authentication
 
   def list(conn, params) do

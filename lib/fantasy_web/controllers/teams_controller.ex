@@ -7,7 +7,7 @@ defmodule FantasyWeb.TeamsController do
   alias Fantasy.Users.User
   alias FantasyWeb.Authentication
 
-  def list_team_players(conn, _) do
+  def list(conn, _) do
     with %User{} = user <- Authentication.get_current_account(conn),
          {:ok, result} <- Teams.list_team_players(user.id) do
       render(conn, "show.json", %{team_players: result})

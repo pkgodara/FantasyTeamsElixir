@@ -41,7 +41,7 @@ defmodule Fantasy.Players.Player do
 
   def update_changeset(player, attrs) do
     player
-    |> cast(attrs, [:fname, :lname, :country, :age, :role])
-    |> validate_required([:fname, :lname, :country, :age, :role])
+    |> cast(attrs, [:fname, :lname, :country])
+    |> validate_required([:fname, :lname, :country])
   end
 end
