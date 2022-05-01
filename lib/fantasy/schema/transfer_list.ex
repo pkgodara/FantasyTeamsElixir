@@ -5,6 +5,8 @@ defmodule Fantasy.Schema.TransferList do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @max_int 2_147_483_647
+
   @required_fields [:user_id, :player_id, :ask_price]
 
   @primary_key false
@@ -21,8 +23,23 @@ defmodule Fantasy.Schema.TransferList do
     transfer_list
     |> cast(attrs, @required_fields)
     |> validate_required(@required_fields)
+    |> validate_ask_price_range()
     |> foreign_key_constraint(:user_id)
     |> foreign_key_constraint(:player_id)
     |> unique_constraint(:player_id, name: :transfer_list_pkey)
   end
+
+  defp validate_ask_price_range(%Ecto.Changeset{changes: %{ask_price: ask_price}} = changeset) do
+    if ask_price < @max_int && ask_price > 0 do
+      changeset
+    else
+      add_error(
+        changeset,
+        :ask_price_range,
+        "ask should be greater than 0 & less than #{@max_int}"
+      )
+    end
+  end
+
+  defp validate_ask_price_range(changeset), do: changeset
 end
